@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
     tools:context=".MainActivity">
 
 <!--    <TextView
@@ -29,7 +28,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />-->
-    <TextView
+<!--    <TextView
         android:id="@+id/text"
         android:textSize="30sp"
         android:layout_weight="1"
@@ -52,6 +51,43 @@
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:gravity="center"
-        android:text="Approve"/>
+        android:text="Approve"/>-->
+    <TextView
+        android:id="@+id/normal"
+        android:layout_width="350dp"
+        android:layout_height="100dp"
+        android:background="#ff0"
+        android:text="Width 200dp"
+        android:textColor="#000"
+        android:textSize="26sp"
+        android:layout_marginTop="10dp"
+        android:padding="10dp"
+        android:gravity="bottom|end"
+        />
+    <TextView
+        android:id="@+id/italics"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#f0f"
+        android:text="Width wrap_content"
+        android:textColor="#FFF"
+        android:textSize="26sp"
+        android:layout_marginTop="10dp"
+        android:textStyle="italic"
+        android:padding="20dp"
+        />
+    <TextView
+        android:id="@+id/bolds"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#800070f0"
+        android:text="Width match_parent"
+        android:textColor="#FFF"
+        android:textSize="26sp"
+        android:layout_marginTop="10dp"
+        android:textStyle="bold"
+        android:padding="30dp"
+        android:gravity="center"
+        />
 
 </LinearLayout>
