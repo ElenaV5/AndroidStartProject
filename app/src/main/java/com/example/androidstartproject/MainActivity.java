@@ -11,7 +11,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_main);
+        setContentView(R.layout.second_layout);
+
+        TextView textView = (TextView) findViewById(R.id.header);
+
+        textView.setText("Hello from Java!");
+
 
         //создание нововго экрана без xml:
         /*TextView textView = new TextView(this); //
@@ -21,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(textView); //выводит текст*/
 
         //привязка по направляющим
-        ConstraintLayout constraintLayout = new ConstraintLayout(this);
+        /*ConstraintLayout constraintLayout = new ConstraintLayout(this);
 
         TextView textView = new TextView(this);
         textView.setText("Hello ANDROID!");
@@ -38,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
         constraintLayout.addView(textView);
 
-        setContentView(constraintLayout);
+        setContentView(constraintLayout);*/
 
 
     }
