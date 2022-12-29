@@ -14,10 +14,12 @@ import android.widget.Toast;
 public class Calculator extends AppCompatActivity {
 
     private static final String LogcatTag = "CALCULATOR_ACTIVITY";
+    private static final String LifecycleTag = "LIFECYCLE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(LifecycleTag,"I'm onCreate(), and I'm started");
         setContentView(R.layout.activity_calculator);
 
         final Button calculate = (Button) findViewById(R.id.buttonCalc);
@@ -32,6 +34,36 @@ public class Calculator extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d(LifecycleTag, "I'm onStart(), and I'm started");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d(LifecycleTag, "I'm onStop() and I'm started");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d(LifecycleTag,"I'm onDestroy() and I'm started");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d(LifecycleTag, "I'm onPause() and I'm started");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d(LifecycleTag, "I'm onResume() and I'm started");
+    }
+
     private void calculateAnswer() {
         EditText numbOne = (EditText) findViewById(R.id.editTextNumberDecimal);
         EditText numbTwo = (EditText) findViewById(R.id.editTextNumberDecimal2);
@@ -43,8 +75,19 @@ public class Calculator extends AppCompatActivity {
 
         Log.d(LogcatTag, "All views have been founded");
 
-        float numbone = Integer.parseInt(numbOne.getText().toString());
-        float numbtwo = Integer.parseInt(numbTwo.getText().toString());
+        numbOne.setText("0");
+        numbTwo.setText("0");
+
+        float numbone = 0;
+        float numbtwo = 0;
+        String num1 = numbOne.getText().toString();
+        String num2 = numbTwo.getText().toString();
+        if(num1.equals("") && num1 != null) {
+            numbone = Integer.parseInt(numbOne.getText().toString());
+        }
+        if(num2.equals("") && num2 != null) {
+            numbtwo = Integer.parseInt(numbTwo.getText().toString());
+        }
 
         Log.d(LogcatTag, "Successfully grabbed data from input fields");
         Log.d(LogcatTag, "numbone is: " + numbone + " ; " + "numbtwo is: " + numbtwo);
