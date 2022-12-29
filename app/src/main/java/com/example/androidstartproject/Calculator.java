@@ -33,6 +33,7 @@ public class Calculator extends AppCompatActivity {
             }
         });
 
+        //Первый способ интента:
         Intent i = new Intent(Calculator.this, MainActivity.class); // создание интента
         startActivity(i); //запуск интента
 
