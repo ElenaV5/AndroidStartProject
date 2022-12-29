@@ -34,7 +34,7 @@ public class Calculator extends AppCompatActivity {
         });
 
         Intent i = new Intent(Calculator.this, MainActivity.class); // создание интента
-
+        startActivity(i); //запуск интента
 
 
     }
@@ -76,6 +76,11 @@ public class Calculator extends AppCompatActivity {
         RadioButton subtract = (RadioButton) findViewById(R.id.subtract);
         RadioButton multiple = (RadioButton) findViewById(R.id.multiple);
         RadioButton divide = (RadioButton) findViewById(R.id.divide);
+
+        numbOne.setText("0"); //инициализация полей
+        numbTwo.setText("0");
+        add.setChecked(true);
+
         TextView answer = (TextView) findViewById(R.id.result);
 
         Log.d(LogcatTag, "All views have been founded");
