@@ -1,5 +1,9 @@
 package com.example.androidstartproject;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -17,6 +21,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private static final int REQ_C = 1;
     EditText et;
     TextView tv;
+
+    ActivityResultLauncher<Intent> mStartActivityForResult = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    Intent intent = result.getData();
+                    tv.setText(intent.getStringExtra("tv"));
+                }
+            }
+    );
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,12 +103,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.button3:
                 intent = new Intent(this, ComeBackActivity.class);
-                startActivityForResult(intent, REQ_C); //устаревшее, сейчас не используется!
+                //startActivityForResult(intent, REQ_C); //устаревшее, сейчас не используется!
+                mStartActivityForResult.launch(intent);
                 break;
         }
     }
 
-    @Override
+    /*@Override //устаревшее, не работает в Android X
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode){
@@ -101,5 +117,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 tv.setText(data.getStringExtra("et"));
                 break;
         }
-    }
+    }*/
 }

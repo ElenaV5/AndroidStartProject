@@ -7,4 +7,25 @@
     tools:context=".ComeBackActivity">
 
 
+    <EditText
+        android:id="@+id/backTV"
+        android:layout_width="262dp"
+        android:layout_height="62dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/sendBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Send back"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/backTV"
+        app:layout_constraintStart_toStartOf="@+id/backTV"
+        app:layout_constraintTop_toBottomOf="@+id/backTV" />
 </androidx.constraintlayout.widget.ConstraintLayout>
