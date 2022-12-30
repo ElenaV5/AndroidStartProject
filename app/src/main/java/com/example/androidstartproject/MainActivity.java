@@ -1,13 +1,21 @@
 package com.example.androidstartproject;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
+    private static final int REQ_C = 1;
+    EditText et;
+    TextView tv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +59,38 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(constraintLayout);*/
 
+        et = (EditText) findViewById(R.id.et);
+        tv = (TextView) findViewById(R.id.tv);
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        Intent intent;
+        switch (v.getId()){
+            case R.id.button:
+                intent = new Intent(this, MainActivity2.class);
+                startActivity(intent);
+                break;
+            case R.id.button2:
+                intent = new Intent(this, toInfActivity.class);
+                String eText = et.getText().toString();
+                startActivity(intent);
+                break;
+            case R.id.button3:
+                intent = new Intent(this, ComeBackActivity.class);
+                startActivityForResult(intent, REQ_C); //устаревшее, сейчас не используется!
+                break;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode){
+            case RESULT_OK:
+                tv.setText(data.getStringExtra("et"));
+                break;
+        }
     }
 }
