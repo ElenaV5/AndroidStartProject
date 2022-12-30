@@ -144,7 +144,8 @@
         android:layout_marginStart="0dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="0dp"
-        android:text="Start activity" />
+        android:onClick="onClick"
+        android:text="Start simple" />
 
     <Button
         android:id="@+id/button2"
@@ -156,6 +157,7 @@
         android:layout_marginStart="0dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="0dp"
+        android:onClick="onClick"
         android:text="Catch Data" />
 
     <Button
@@ -168,6 +170,7 @@
         android:layout_marginStart="0dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="0dp"
+        android:onClick="onClick"
         android:text="Give it back to me" />
 
 </RelativeLayout>
