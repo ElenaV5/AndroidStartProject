@@ -33,7 +33,7 @@ public class Calculator extends AppCompatActivity {
                 Log.d(LogcatTag, "Button have been pushed");
                 calculateAnswer();
                 Intent i = new Intent(Calculator.this, MainActivity.class); // создание интента
-                startActivity(i); //запуск интента
+                //startActivity(i); //запуск интента
             }
         });
 
@@ -102,17 +102,20 @@ public class Calculator extends AppCompatActivity {
 
         Log.d(LogcatTag, "All views have been founded");
 
-        numbOne.setText("0");
-        numbTwo.setText("0");
+        try {
+            int a = 25 / 0;
+        } catch (ArithmeticException e){
+            e.printStackTrace();
+        } //обработка исключения деления на 0
 
         float numbone = 0;
         float numbtwo = 0;
         String num1 = numbOne.getText().toString();
         String num2 = numbTwo.getText().toString();
-        if(num1.equals("") && num1 != null) {
+        if(!num1.equals("") && num1 != null) {
             numbone = Integer.parseInt(numbOne.getText().toString());
         }
-        if(num2.equals("") && num2 != null) {
+        if(!num2.equals("") && num2 != null) {
             numbtwo = Integer.parseInt(numbTwo.getText().toString());
         }
 
