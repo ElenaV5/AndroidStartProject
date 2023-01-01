@@ -12,6 +12,8 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.IOException;
+
 public class Calculator extends AppCompatActivity {
 
     private static final String LogcatTag = "CALCULATOR_ACTIVITY";
@@ -31,7 +33,28 @@ public class Calculator extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.d(LogcatTag, "Button have been pushed");
-                calculateAnswer();
+                try {
+                    calculateAnswer();
+                } catch (Exception e){
+                    //прерывание:
+                    //e.printStackTrace();
+                    //Toast.makeText(Calculator.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                    //finish();
+
+                    //востановление:
+                    e.printStackTrace();
+                    Toast.makeText(Calculator.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                    dropFields();
+                }
+                /*catch (IOException e){
+                    Toast.makeText(Calculator.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                    finish();
+                }
+                catch (ArithmeticException e){
+                    Toast.makeText(Calculator.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                    finish();
+                }*/
+
                 Intent i = new Intent(Calculator.this, MainActivity.class); // создание интента
                 //startActivity(i); //запуск интента
             }
@@ -86,7 +109,23 @@ public class Calculator extends AppCompatActivity {
         Log.d(LifecycleTag, "I'm onResume() and I'm started");
     }
 
-    private void calculateAnswer() {
+    private void dropFields(){
+        EditText numbOne = (EditText) findViewById(R.id.editTextNumberDecimal);
+        EditText numbTwo = (EditText) findViewById(R.id.editTextNumberDecimal2);
+        RadioButton add = (RadioButton) findViewById(R.id.add);
+        RadioButton subtract = (RadioButton) findViewById(R.id.subtract);
+        RadioButton multiple = (RadioButton) findViewById(R.id.multiple);
+        RadioButton divide = (RadioButton) findViewById(R.id.divide);
+
+        numbOne.setText("0"); //инициализация полей
+        numbTwo.setText("0");
+        add.setChecked(true);
+
+        TextView answer = (TextView) findViewById(R.id.result);
+        answer.setText("How we have problems. Try again later.");
+    }
+
+    private void calculateAnswer() throws ArithmeticException, IOException {
         EditText numbOne = (EditText) findViewById(R.id.editTextNumberDecimal);
         EditText numbTwo = (EditText) findViewById(R.id.editTextNumberDecimal2);
         RadioButton add = (RadioButton) findViewById(R.id.add);
@@ -102,11 +141,16 @@ public class Calculator extends AppCompatActivity {
 
         Log.d(LogcatTag, "All views have been founded");
 
-        try {
-            int a = 25 / 0;
+ /*       try {
+            //int a = 25 / 0;
+            throw new ArithmeticException("I'm generated exception");
         } catch (ArithmeticException e){
-            e.printStackTrace();
+            //e.printStackTrace(); //выводит сообщение в логах
+            Toast.makeText(this, "There's a problem inside the app!", Toast.LENGTH_SHORT).show(); //выведет сообщение пользователю
+            finish(); //завершит активность специально!
         } //обработка исключения деления на 0
+*/
+
 
         float numbone = 0;
         float numbtwo = 0;
@@ -147,5 +191,12 @@ public class Calculator extends AppCompatActivity {
         Log.d(LogcatTag, "The result of operations is: " + solution);
 
         answer.setText("The answer is " + solution);
+
+        switch ((int) Math.random()*2){
+            case 0 : throw new ArithmeticException("I'm generated arithmetical exception");
+            case 1 : throw new IOException("I'm generated IO exception");
+        }
+
+
     }
 }
