@@ -17,6 +17,8 @@ public class Calculator extends AppCompatActivity {
     private static final String LogcatTag = "CALCULATOR_ACTIVITY";
     private static final String LifecycleTag = "LIFECYCLE";
 
+    Button btnIntent;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,15 +32,29 @@ public class Calculator extends AppCompatActivity {
             public void onClick(View view) {
                 Log.d(LogcatTag, "Button have been pushed");
                 calculateAnswer();
+                Intent i = new Intent(Calculator.this, MainActivity.class); // создание интента
+                startActivity(i); //запуск интента
             }
         });
 
-        //Первый способ интента:
-        Intent i = new Intent(Calculator.this, MainActivity.class); // создание интента
-        startActivity(i); //запуск интента
+        btnIntent = (Button) findViewById(R.id.simpleAct);
 
-
+        /*btnIntent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Первый способ интента:
+                Intent i = new Intent(Calculator.this, MainActivity.class); // создание интента
+                startActivity(i); //запуск интента
+            }
+        });*/
     }
+
+
+
+
+
+
+
 
     @Override
     protected void onStart() {
